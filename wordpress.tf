@@ -30,7 +30,7 @@ resource "aws_security_group" "wp" {
 resource "aws_instance" "wp" {
   ami             = "ami-09a7bbd08886aafdf" 
   instance_type   = "t2.micro"
-  key_name        = aws_key_pair.mycloudkey1.key_name
+  key_name        = aws_key_pair.devopskey.key_name
   vpc_security_group_ids = [aws_security_group.wp.id]
   subnet_id       = aws_subnet.public.id
   
@@ -45,7 +45,7 @@ resource "null_resource" "wp_setup" {
     user        = "ec2-user"
     host        = aws_instance.wp.public_ip
     port        = 22
-    private_key = tls_private_key.mycloudkey1.private_key_pem
+    private_key = tls_private_key.devopskey.private_key_pem
   }
 
   provisioner "remote-exec" {
