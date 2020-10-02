@@ -1,4 +1,7 @@
-resource "aws_security_group" "sql" {
+###### We will have two route tables. One only with egress and another one with both way connectivity. The default route table will be given to private subnet 
+###### with Egress only to the internet whereas the secondary table will have Internet Gateway for both way connectivity and will be given to public subnet
+
+resource "aws_security_group" "sqlsg" {
   name        = "mariabdb-sql"
   description = "wp sql connection and egress protocals"
   vpc_id      = aws_vpc.main.id
@@ -23,8 +26,8 @@ resource "aws_security_group" "sql" {
 resource "aws_instance" "sql" {
   ami             = "ami-09a7bbd08886aafdf" 
   instance_type   = "t2.micro"
-  key_name        = aws_key_pair.mycloudkey1.key_name
-  vpc_security_group_ids = [aws_security_group.sql.id]
+  key_name        = aws_key_pair.devopskey.key_name
+  vpc_security_group_ids = [aws_security_group.sqlsg.id]
   subnet_id       = aws_subnet.private.id
   user_data       = <<EOT
   #!/bin/bash
