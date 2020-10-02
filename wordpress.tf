@@ -28,7 +28,7 @@ resource "aws_security_group" "wp" {
 }
 
 resource "aws_instance" "wp" {
-  ami             = "ami-09a7bbd08886aafdf" 
+  ami             = "ami-0e306788ff2473ccb" 
   instance_type   = "t2.micro"
   key_name        = aws_key_pair.devopskey.key_name
   vpc_security_group_ids = [aws_security_group.wp.id]
