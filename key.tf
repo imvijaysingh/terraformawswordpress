@@ -9,12 +9,12 @@ resource "tls_private_key" "devopskey" {
 
 # Save Private key locally
 resource "local_file" "private_key" {
-  content  = tls_private_key.devopskey.private_key_pem
+  content  = "tls_private_key.devopskey.private_key_pem"
   filename = "devops.pem"
 }
 
 # Upload public key to create keypair on AWS
 resource "aws_key_pair" "devops" {
   key_name   = "webserver"
-  public_key = tls_private_key.devops.public_key_openssh
+  public_key = "tls_private_key.devops.public_key_openssh"
 }
