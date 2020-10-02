@@ -28,12 +28,12 @@ resource "aws_security_group" "wp" {
 }
 
 resource "aws_instance" "wp" {
-  ami             = "ami-0e306788ff2473ccb" 
-  instance_type   = "t2.micro"
-  key_name        = aws_key_pair.devopskey.key_name
+  ami                    = "ami-0e306788ff2473ccb"
+  instance_type          = "t2.micro"
+  key_name               = "aws_key_pair.devopskey.key_name"
   vpc_security_group_ids = [aws_security_group.wp.id]
-  subnet_id       = aws_subnet.public.id
-  
+  subnet_id              = "aws_subnet.public.id"
+
   tags = {
     Name = "wp"
   }
@@ -70,3 +70,4 @@ resource "null_resource" "wp_setup" {
     ]
   }
 }
+
