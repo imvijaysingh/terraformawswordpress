@@ -14,9 +14,9 @@ Following will get provision using Terraform.
 
 Usage: Provision:
 
-terraform init
-terraform plan
-terraform apply -auto-approve
+  terraform init
+  terraform plan
+  terraform apply -auto-approve
 
 Destroy:
 terraform destroy -auto-approve
