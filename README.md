@@ -11,6 +11,7 @@ Following will get provision using Terraform.
   4. EIP for NAT Gateway
   5. Mariadb sql EC2 instance and wordpress EC2 instance
   6. Security Groups to access both EC2 and SQL
+  7. Autoscaling Group
 
 Usage: Provision:
 
