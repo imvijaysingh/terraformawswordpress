@@ -1,5 +1,4 @@
-###### We will have two route tables. One only with egress and another one with both way connectivity. The default route table will be given to private subnet 
-###### with Egress only to the internet whereas the secondary table will have Internet Gateway for both way connectivity and will be given to public subnet
+###### Primary table Private subnet with Egress only to the internet whereas the secondary table will have Internet Gateway for both way connectivity and will be given to public subnet
 
 resource "aws_security_group" "sqlsg" {
   name        = "mariabdb-sql"
@@ -37,7 +36,7 @@ resource "aws_instance" "sql" {
   sudo systemctl start mariadb
   sudo systemctl enable mariadb
   mysql -u root <<EOF
-  CREATE USER 'wordpress-user'@'${aws_instance.wp.private_ip}' IDENTIFIED BY 'password@123';
+  CREATE USER 'wordpress-user'@'${aws_instance.wp.private_ip}' IDENTIFIED BY 'myname@123';
   CREATE DATABASE wordpress_db;
   GRANT ALL PRIVILEGES ON wordpress_db.* TO 'wordpress-user'@'${aws_instance.wp.private_ip}';
   FLUSH PRIVILEGES;
