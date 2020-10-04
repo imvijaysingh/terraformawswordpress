@@ -58,7 +58,7 @@ resource "null_resource" "wp_setup" {
       "cp wordpress/wp-config-sample.php wordpress/wp-config.php",
       "sed -i 's/database_name_here/wordpress_db/g' wordpress/wp-config.php",
       "sed -i 's/username_here/wordpress-user/g' wordpress/wp-config.php",
-      "sed -i 's/password_here/password@123/g' wordpress/wp-config.php",
+      "sed -i 's/password_here/myname@123/g' wordpress/wp-config.php",
       "sed -i 's/localhost/${aws_instance.sql.private_ip}/g' wordpress/wp-config.php",
       "sudo cp -r wordpress/* /var/www/html/",
       "sudo chown -R apache /var/www",
